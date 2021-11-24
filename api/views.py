@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Author, Quotes
-from .serializers import AuthorSerializer, QuotesSerializer
+from .serializers import AuthorSerializer, QuotesSerializer, QuotesGetSerializer
 
 from rest_framework import generics
 
@@ -34,7 +34,11 @@ class QuotesList(generics.ListAPIView):
     queryset = Quotes.objects.all()
     serializer_class = QuotesSerializer
 
-class QuotesList(generics.ListAPIView):
+class QuotesOneList(generics.RetrieveAPIView):
     # API endpoint that returns a single customer by pk
     queryset = Quotes.objects.all()
     serializer_class = QuotesSerializer
+
+class QuotesOneListEspecial(generics.RetrieveAPIView):
+    queryset = Quotes.objects.all()
+    serializer_class = QuotesGetSerializer
